@@ -48,8 +48,16 @@ namespace NTP_092922_TextBoxProperties
             {
                 textBox1.ForeColor = Color.Purple;
             }
-
-            textBox1.Font = new Font(familyName: "Calibri", emSize: float.Parse(txbSize.Text));
+            try
+            {
+                textBox1.Font = new Font(familyName: "Calibri", emSize: float.Parse(txbSize.Text));
+            }
+            catch(FormatException)
+            {
+                txbSize.Text = "18.5"; // fixes #1
+                textBox1.Font = new Font(familyName: "Calibri", emSize: float.Parse(txbSize.Text));
+            }
+            
 
         }
     }
